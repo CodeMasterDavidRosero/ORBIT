@@ -10,7 +10,7 @@ El núcleo no accede a implementaciones internas de otros módulos: expone servi
 
 | Componente | Responsabilidad | Tecnología | Inicio |
 |---|---|---|---|
-| `clinical_app` | Interfaz del personal de la IPS web/Android/iOS | Flutter, Dart, Riverpod, go_router | H0; iOS se verifica en H2 |
+| `orbit_app` | Interfaz del personal de la IPS web/Android/iOS | Flutter, Dart, Riverpod, go_router | H0; iOS se verifica en H2 |
 | `clinical-api` | API REST, autorización, núcleo clínico y sesión web BFF | Spring Boot, Java 21, Modulith | H0 |
 | `identity` | Autenticación, MFA y sesiones de identidad | Keycloak OIDC | H0 |
 | `postgres` | Datos transaccionales y versiones de documentos | PostgreSQL y Flyway | H0 |
@@ -58,7 +58,7 @@ Las flechas de resultado representan contratos internos/eventos, nunca escritura
 
 | Ruta a crear | Contenido |
 |---|---|
-| `apps/clinical_app/` | Proyecto Flutter y pruebas de interfaz |
+| `apps/orbit_app/` | Proyecto Flutter y pruebas de interfaz |
 | `services/clinical-api/` | API y módulos de dominio |
 | `services/clinical-worker/` | Manejadores de trabajos de documentos y comunicaciones |
 | `services/ai-service/` | API interna, worker, proveedores y evaluaciones de IA |

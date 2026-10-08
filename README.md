@@ -1,8 +1,10 @@
-# Proyecto clínico de PLUSSANAR
+# ORBIT
+
+Aplicación clínica ORBIT.
 
 Plan técnico inicial · 8 de octubre de 2026 · Versión 0.1
 
-Este paquete convierte la propuesta comercial en trabajo de desarrollo para una aplicación clínica Flutter web y móvil, una API y sus servicios auxiliares. Contiene arquitectura y tareas pendientes; todavía no contiene el código de la aplicación.
+Este paquete convierte la propuesta comercial en trabajo de desarrollo para ORBIT: una aplicación clínica Flutter web y móvil, una API y sus servicios auxiliares. Contiene arquitectura y tareas pendientes; todavía no contiene el código de la aplicación.
 
 **Primer resultado buscado:** una recepcionista inicia sesión, registra un paciente ficticio y agenda una cita; un profesional abre la atención, guarda una nota, la confirma y consulta la auditoría. El mismo backend atiende Flutter web y Android. El diseño contempla iOS y su verificación con macOS/Xcode antes de publicarlo.
 
