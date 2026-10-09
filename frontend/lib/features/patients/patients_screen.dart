@@ -11,6 +11,7 @@ class PatientsScreen extends StatefulWidget {
 
 class _PatientsScreenState extends State<PatientsScreen> {
   final search = TextEditingController();
+  late List<Patient> patients = [...mockPatients];
   @override
   void dispose() {
     search.dispose();
@@ -20,7 +21,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
   @override
   Widget build(BuildContext context) {
     final query = search.text.toLowerCase();
-    final visible = mockPatients
+    final visible = patients
         .where(
           (p) =>
               p.name.toLowerCase().contains(query) ||
@@ -65,7 +66,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
               ),
               const SizedBox(width: 16),
               FilledButton.icon(
-                onPressed: () {},
+                onPressed: () => _patientForm(),
                 icon: const Icon(Icons.person_add_outlined),
                 label: const Text('Nuevo paciente'),
               ),
@@ -142,6 +143,90 @@ class _PatientsScreenState extends State<PatientsScreen> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('Cerrar'),
+          ),
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _patientForm(patient: patient);
+            },
+            child: const Text('Editar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _patientForm({Patient? patient}) {
+    final formKey = GlobalKey<FormState>();
+    final name = TextEditingController(text: patient?.name);
+    final document = TextEditingController(text: patient?.document);
+    final phone = TextEditingController(text: patient?.phone);
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(patient == null ? 'Nuevo paciente' : 'Editar paciente'),
+        content: SizedBox(
+          width: 420,
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  controller: name,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Nombre completo',
+                  ),
+                  validator: (value) => value == null || value.trim().length < 3
+                      ? 'Escribe el nombre completo'
+                      : null,
+                ),
+                TextFormField(
+                  controller: document,
+                  decoration: const InputDecoration(labelText: 'Documento'),
+                  validator: (value) => value == null || value.trim().isEmpty
+                      ? 'El documento es obligatorio'
+                      : null,
+                ),
+                TextFormField(
+                  controller: phone,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(labelText: 'Teléfono'),
+                  validator: (value) => value == null || value.trim().length < 7
+                      ? 'Escribe un teléfono válido'
+                      : null,
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            onPressed: () {
+              if (!formKey.currentState!.validate()) return;
+              final updated = Patient(
+                name.text.trim(),
+                document.text.trim(),
+                phone.text.trim(),
+                patient?.birthDate ?? 'Pendiente',
+              );
+              setState(() {
+                if (patient == null) {
+                  patients = [...patients, updated];
+                } else {
+                  patients = patients
+                      .map((item) => item == patient ? updated : item)
+                      .toList();
+                }
+              });
+              Navigator.pop(context);
+            },
+            child: const Text('Guardar'),
           ),
         ],
       ),
