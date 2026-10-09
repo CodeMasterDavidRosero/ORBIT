@@ -11,6 +11,7 @@ import 'features/encounters/encounters_screen.dart';
 import 'features/modules/modules_screen.dart';
 import 'features/settings/settings_screen.dart';
 import 'features/ui_states/ui_states_screen.dart';
+import 'features/analytics/analytics_screen.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -70,6 +71,7 @@ class _OrbitShellState extends State<OrbitShell> {
     ('Más módulos', Icons.widgets_outlined),
     ('Perfil', Icons.person_outline),
     ('Estados UI', Icons.sync_problem_outlined),
+    ('Indicadores', Icons.insights_outlined),
   ];
 
   @override
@@ -115,7 +117,7 @@ class _OrbitShellState extends State<OrbitShell> {
   Widget _rail() => NavigationRail(
     selectedIndex: selectedIndex,
     onDestinationSelected: (index) => setState(() => selectedIndex = index),
-    labelType: NavigationRailLabelType.all,
+    labelType: NavigationRailLabelType.selected,
     backgroundColor: Colors.white,
     leading: Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
@@ -168,6 +170,7 @@ class _OrbitShellState extends State<OrbitShell> {
     if (selectedIndex == 4) return const ModulesScreen();
     if (selectedIndex == 5) return const SettingsScreen();
     if (selectedIndex == 6) return const UiStatesScreen();
+    if (selectedIndex == 7) return const AnalyticsScreen();
     if (selectedIndex != 0) {
       return Center(
         child: Text(
