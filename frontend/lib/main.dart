@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -13,23 +14,31 @@ class OrbitApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return ShadApp.router(
       title: 'ORBIT',
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2F80ED)),
-        scaffoldBackgroundColor: const Color(0xFFF5F8FC),
-        fontFamily: 'Arial',
-        cardTheme: CardThemeData(
-          color: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-            side: const BorderSide(color: Color(0xFFE7EEF6)),
-          ),
+      theme: ShadThemeData(
+        brightness: Brightness.light,
+        colorScheme: const ShadBlueColorScheme.light(
+          background: Color(0xFFF7FAFC),
+          foreground: Color(0xFF102A43),
+          card: Color(0xFFFFFFFF),
+          cardForeground: Color(0xFF102A43),
+          primary: Color(0xFF2F6FBE),
+          primaryForeground: Color(0xFFFFFFFF),
+          secondary: Color(0xFFEAF2FA),
+          secondaryForeground: Color(0xFF234E70),
+          muted: Color(0xFFF0F4F8),
+          mutedForeground: Color(0xFF627D98),
+          accent: Color(0xFFE7F0FA),
+          accentForeground: Color(0xFF234E70),
+          border: Color(0xFFD9E2EC),
+          input: Color(0xFFD9E2EC),
+          ring: Color(0xFF5B8CC9),
+          selection: Color(0xFFCFE2F5),
         ),
+        radius: BorderRadius.circular(12),
       ),
     );
   }
