@@ -10,6 +10,8 @@ class ModulesScreen extends StatefulWidget {
 
 class _ModulesScreenState extends State<ModulesScreen> {
   int selected = 0;
+  bool linkActive = true;
+  bool appointmentConfirmed = false;
   final modules = const [
     (
       'Formularios',
@@ -108,6 +110,7 @@ class _ModulesScreenState extends State<ModulesScreen> {
 
   Widget _detail() {
     final item = modules[selected];
+    if (selected == 4) return _preadmissionDetail(item);
     final rows = switch (selected) {
       0 => [
         'Consulta general · v1.2 · Publicada',
@@ -171,6 +174,116 @@ class _ModulesScreenState extends State<ModulesScreen> {
                   selected == 0 ? 'Nueva plantilla' : 'Crear solicitud',
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _preadmissionDetail((String, String, IconData) item) {
+    final status = !linkActive
+        ? 'Expirado o cancelado'
+        : appointmentConfirmed
+        ? 'Confirmada por el paciente'
+        : 'Vigente · caduca en 23 horas';
+    final color = linkActive ? OrbitColors.success : OrbitColors.muted;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.$1,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: OrbitColors.navy,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Confirma una cita con un enlace de uso limitado.',
+              style: TextStyle(color: OrbitColors.muted),
+            ),
+            const SizedBox(height: 20),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const CircleAvatar(
+                backgroundColor: OrbitColors.blueSoft,
+                child: Icon(Icons.person_outline, color: OrbitColors.blue),
+              ),
+              title: const Text(
+                'María Fernanda López',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              subtitle: const Text(
+                'Consulta de control · Hoy, 09:00 · Dra. Rivera',
+              ),
+              trailing: Chip(
+                label: Text(status),
+                side: BorderSide.none,
+                backgroundColor: color.withValues(alpha: 0.12),
+                labelStyle: TextStyle(color: color, fontSize: 12),
+              ),
+            ),
+            const Divider(height: 28),
+            if (linkActive) ...[
+              const Text(
+                'Enlace seguro de demostración',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              SelectableText(
+                'orbit.app/confirmar/OR-7K4M-92QX',
+                style: TextStyle(
+                  color: OrbitColors.blue,
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'No contiene información clínica y solo puede usarse una vez.',
+                style: TextStyle(fontSize: 12, color: OrbitColors.muted),
+              ),
+            ] else
+              const Text(
+                'Este enlace ya no permite confirmar la cita.',
+                style: TextStyle(color: OrbitColors.muted),
+              ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (linkActive && !appointmentConfirmed) ...[
+                  OutlinedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.copy_outlined),
+                    label: const Text('Copiar enlace'),
+                  ),
+                  const SizedBox(width: 12),
+                  FilledButton.icon(
+                    onPressed: () =>
+                        setState(() => appointmentConfirmed = true),
+                    icon: const Icon(Icons.check),
+                    label: const Text('Simular confirmación'),
+                  ),
+                ],
+                if (linkActive)
+                  TextButton(
+                    onPressed: () => setState(() => linkActive = false),
+                    child: const Text('Cancelar enlace'),
+                  ),
+                if (!linkActive)
+                  OutlinedButton(
+                    onPressed: () => setState(() {
+                      linkActive = true;
+                      appointmentConfirmed = false;
+                    }),
+                    child: const Text('Generar nuevo enlace'),
+                  ),
+              ],
             ),
           ],
         ),
