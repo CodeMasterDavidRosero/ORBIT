@@ -1,12 +1,27 @@
 class Appointment {
-  const Appointment(this.time, this.patient, this.type, this.status);
+  Appointment(
+    this.time,
+    this.patient,
+    this.type,
+    this.status, {
+    DateTime? date,
+    this.durationMinutes = 30,
+    this.professional = 'Dra. Rivera',
+    this.site = 'Sede principal',
+  }) : date = date ?? defaultDate;
   final String time;
   final String patient;
   final String type;
   final String status;
+  final DateTime date;
+  final int durationMinutes;
+  final String professional;
+  final String site;
 }
 
-const mockAppointments = [
+final defaultDate = DateTime(2026, 10, 13);
+
+final mockAppointments = [
   Appointment(
     '08:30',
     'María Fernanda López',

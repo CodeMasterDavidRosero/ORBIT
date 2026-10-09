@@ -20,21 +20,21 @@ La agenda debe permitir visualizar disponibilidad, crear citas, moverlas, reprog
 
 ## Vistas requeridas
 
-- [ ] AGENDA-001 — Vista mensual: calendario completo, citas por día y navegación a vista diaria.
-- [ ] AGENDA-002 — Vista semanal: columnas por día, bloques de 30 minutos y varias duraciones.
-- [ ] AGENDA-003 — Vista diaria: agenda detallada del profesional y selección de franja libre.
-- [ ] AGENDA-004 — Selector de vista: Mes, Semana y Día; acciones anterior, siguiente y hoy.
+- [x] AGENDA-001 — Vista mensual: calendario completo, citas por día y navegación a vista diaria.
+- [x] AGENDA-002 — Vista semanal: columnas por día, bloques de 30 minutos y varias duraciones.
+- [x] AGENDA-003 — Vista diaria: agenda detallada del profesional y selección de franja libre.
+- [x] AGENDA-004 — Selector de vista: Mes, Semana y Día; acciones anterior, siguiente y hoy.
 
 ## Bloques horarios
 
-- [ ] AGENDA-005 — Intervalos de 30 minutos y servicios de 30, 60, 90 y 120 minutos.
-- [ ] AGENDA-006 — Horarios laborales, pausas, vacaciones, reuniones y bloqueos.
-- [ ] AGENDA-007 — Configuración rápida de jornada por profesional, sede y servicio.
-- [ ] AGENDA-008 — Impedir citas fuera de horario o sobre franjas ocupadas.
+- [x] AGENDA-005 — Intervalos de 30 minutos y servicios de 30, 60, 90 y 120 minutos.
+- [x] AGENDA-006 — Horarios laborales, pausas, vacaciones, reuniones y bloqueos.
+- [x] AGENDA-007 — Configuración rápida de jornada por profesional, sede y servicio.
+- [x] AGENDA-008 — Impedir citas fuera de horario o sobre franjas ocupadas.
 
 ## Crear y editar citas
 
-- [ ] AGENDA-009 — Crear cita desde una franja con paciente, servicio, profesional, sede y duración.
+- [x] AGENDA-009 — Crear cita desde una franja con paciente, servicio, profesional, sede y duración.
 - [ ] AGENDA-010 — Crear cita desde botón global con sugerencia de horarios disponibles.
 - [ ] AGENDA-011 — Editar motivo, servicio y observaciones autorizadas.
 - [ ] AGENDA-012 — Mover cita con arrastrar y soltar en escritorio.
