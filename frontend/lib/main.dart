@@ -75,9 +75,15 @@ class _OrbitShellState extends State<OrbitShell> {
     final compact = context.isOrbitCompact;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'ORBIT',
-          style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: 1.5),
+        title: Row(
+          children: [
+            Image.asset('assets/images/logo.png', width: 28, height: 28),
+            const SizedBox(width: 10),
+            const Text(
+              'ORBIT',
+              style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: 1.5),
+            ),
+          ],
         ),
         actions: [
           IconButton(
@@ -109,9 +115,9 @@ class _OrbitShellState extends State<OrbitShell> {
     onDestinationSelected: (index) => setState(() => selectedIndex = index),
     labelType: NavigationRailLabelType.all,
     backgroundColor: Colors.white,
-    leading: const Padding(
+    leading: Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
-      child: Icon(Icons.blur_circular, color: Color(0xFF2F80ED), size: 30),
+      child: Image.asset('assets/images/logo.png', width: 32, height: 32),
     ),
     destinations: destinations
         .map(
@@ -131,16 +137,22 @@ class _OrbitShellState extends State<OrbitShell> {
       Navigator.pop(context);
     },
     children: [
-      const Padding(
+      Padding(
         padding: EdgeInsets.fromLTRB(28, 28, 28, 20),
-        child: Text(
-          'ORBIT',
-          style: TextStyle(
-            color: Color(0xFF185ABC),
-            fontSize: 22,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.5,
-          ),
+        child: Row(
+          children: [
+            Image.asset('assets/images/logo.png', width: 30, height: 30),
+            const SizedBox(width: 10),
+            const Text(
+              'ORBIT',
+              style: TextStyle(
+                color: Color(0xFF185ABC),
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ],
         ),
       ),
       ...destinations.map(
