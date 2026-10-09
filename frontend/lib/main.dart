@@ -7,6 +7,7 @@ import 'core/design/orbit_breakpoints.dart';
 import 'shared/widgets/orbit_status_chip.dart';
 import 'features/patients/patients_screen.dart';
 import 'features/scheduling/agenda_screen.dart';
+import 'features/encounters/encounters_screen.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -150,6 +151,7 @@ class _OrbitShellState extends State<OrbitShell> {
   Widget _content(bool compact) {
     if (selectedIndex == 1) return const PatientsScreen();
     if (selectedIndex == 2) return const AgendaScreen();
+    if (selectedIndex == 3) return const EncountersScreen();
     if (selectedIndex != 0) {
       return Center(
         child: Text(
