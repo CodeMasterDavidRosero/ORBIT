@@ -148,13 +148,38 @@ class _AgendaScreenState extends State<AgendaScreen> {
         style: const TextStyle(fontWeight: FontWeight.w700),
       ),
       subtitle: Text(item.type),
-      trailing: Chip(
-        label: Text(item.status),
-        side: BorderSide.none,
-        backgroundColor: color.withValues(alpha: 0.12),
-        labelStyle: TextStyle(color: color, fontSize: 12),
+      trailing: PopupMenuButton<String>(
+        tooltip: 'Acciones de cita',
+        onSelected: (action) => _appointmentAction(item, action),
+        itemBuilder: (_) => const [
+          PopupMenuItem(value: 'reschedule', child: Text('Reprogramar')),
+          PopupMenuItem(value: 'cancel', child: Text('Cancelar')),
+        ],
+        child: Chip(
+          label: Text(item.status),
+          side: BorderSide.none,
+          backgroundColor: color.withValues(alpha: 0.12),
+          labelStyle: TextStyle(color: color, fontSize: 12),
+        ),
       ),
     );
+  }
+
+  void _appointmentAction(Appointment item, String action) {
+    setState(() {
+      appointments = appointments.map((current) {
+        if (current != item) return current;
+        if (action == 'cancel') {
+          return Appointment(
+            current.time,
+            current.patient,
+            current.type,
+            'Cancelada',
+          );
+        }
+        return Appointment('15:30', current.patient, current.type, 'Pendiente');
+      }).toList();
+    });
   }
 
   void _scheduleAppointment() {
