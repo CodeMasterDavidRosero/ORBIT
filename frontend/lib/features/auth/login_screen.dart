@@ -38,6 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset('assets/images/logo.png', height: 64),
+                    const SizedBox(height: 12),
+                    Image.asset(
+                      'assets/images/inicio2.png',
+                      height: 150,
+                      fit: BoxFit.contain,
+                      semanticLabel: 'Ilustración de acceso seguro a ORBIT',
+                    ),
                     const SizedBox(height: 20),
                     const Text(
                       'Iniciar sesión',
