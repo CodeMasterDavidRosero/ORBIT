@@ -96,6 +96,18 @@ class _OrbitShellState extends State<OrbitShell> {
           ],
         ),
         actions: [
+          const Padding(
+            padding: EdgeInsets.only(right: 4),
+            child: Chip(
+              label: Text(
+                'DEMO',
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700),
+              ),
+              avatar: Icon(Icons.science_outlined, size: 16),
+              backgroundColor: Color(0xFFEAF2FA),
+              side: BorderSide.none,
+            ),
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.notifications_none_rounded),
@@ -207,6 +219,26 @@ class _OrbitShellState extends State<OrbitShell> {
           const Text(
             'Resumen de actividad de tu IPS',
             style: TextStyle(color: Color(0xFF627D98), fontSize: 16),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: Color(0xFFEAF2FA),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            child: const Row(
+              children: [
+                Icon(Icons.info_outline, size: 18, color: Color(0xFF2F6FBE)),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Presentación ORBIT · Todos los datos son sintéticos y de demostración.',
+                    style: TextStyle(fontSize: 12, color: Color(0xFF234E70)),
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 28),
           LayoutBuilder(
