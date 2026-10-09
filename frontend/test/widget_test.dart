@@ -5,7 +5,7 @@ void main() {
   testWidgets('muestra el panel inicial de ORBIT', (tester) async {
     await tester.pumpWidget(const OrbitApp());
 
-    expect(find.text('ORBIT'), findsOneWidget);
+    expect(find.byType(Image), findsWidgets);
     expect(find.text('Próximas citas'), findsOneWidget);
     expect(find.text('María Fernanda López'), findsOneWidget);
   });

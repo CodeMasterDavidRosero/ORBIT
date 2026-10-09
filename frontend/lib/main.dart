@@ -77,11 +77,11 @@ class _OrbitShellState extends State<OrbitShell> {
       appBar: AppBar(
         title: Row(
           children: [
-            Image.asset('assets/images/logo.png', width: 28, height: 28),
-            const SizedBox(width: 10),
-            const Text(
-              'ORBIT',
-              style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: 1.5),
+            Image.asset(
+              'assets/images/banner.png',
+              width: 122,
+              height: 34,
+              fit: BoxFit.contain,
             ),
           ],
         ),
@@ -141,16 +141,11 @@ class _OrbitShellState extends State<OrbitShell> {
         padding: EdgeInsets.fromLTRB(28, 28, 28, 20),
         child: Row(
           children: [
-            Image.asset('assets/images/logo.png', width: 30, height: 30),
-            const SizedBox(width: 10),
-            const Text(
-              'ORBIT',
-              style: TextStyle(
-                color: Color(0xFF185ABC),
-                fontSize: 22,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.5,
-              ),
+            Image.asset(
+              'assets/images/banner.png',
+              width: 150,
+              height: 42,
+              fit: BoxFit.contain,
             ),
           ],
         ),
