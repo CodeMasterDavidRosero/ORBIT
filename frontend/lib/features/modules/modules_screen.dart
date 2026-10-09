@@ -12,6 +12,7 @@ class _ModulesScreenState extends State<ModulesScreen> {
   int selected = 0;
   bool linkActive = true;
   bool appointmentConfirmed = false;
+  bool aiReviewed = false;
   final modules = const [
     (
       'Formularios',
@@ -111,6 +112,7 @@ class _ModulesScreenState extends State<ModulesScreen> {
   Widget _detail() {
     final item = modules[selected];
     if (selected == 4) return _preadmissionDetail(item);
+    if (selected == 1) return _aiReviewDetail(item);
     final rows = switch (selected) {
       0 => [
         'Consulta general · v1.2 · Publicada',
@@ -285,6 +287,74 @@ class _ModulesScreenState extends State<ModulesScreen> {
                   ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _aiReviewDetail((String, String, IconData) item) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.$1,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: OrbitColors.navy,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Revisa cada sugerencia antes de incorporarla a la nota.',
+              style: TextStyle(color: OrbitColors.muted),
+            ),
+            const Divider(height: 28),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.auto_awesome, color: OrbitColors.blue),
+              title: Text(
+                aiReviewed
+                    ? 'Sugerencia aplicada manualmente'
+                    : 'Resumir evolución favorable',
+              ),
+              subtitle: const Text(
+                'Fuente: nota clínica · versión 3 · confianza informativa',
+              ),
+            ),
+            if (!aiReviewed) ...[
+              const SizedBox(height: 12),
+              const Text(
+                'La IA propone: “Paciente refiere evolución favorable y continúa recomendaciones”.',
+                style: TextStyle(color: OrbitColors.navy),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  OutlinedButton(
+                    onPressed: () => setState(() => aiReviewed = true),
+                    child: const Text('Descartar'),
+                  ),
+                  const SizedBox(width: 12),
+                  FilledButton(
+                    onPressed: () => setState(() => aiReviewed = true),
+                    child: const Text('Aceptar campo'),
+                  ),
+                ],
+              ),
+            ] else
+              const Text(
+                'La nota original no fue alterada automáticamente.',
+                style: TextStyle(
+                  color: OrbitColors.success,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
           ],
         ),
       ),
