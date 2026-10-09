@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/theme/orbit_colors.dart';
 
 class OrbitStatusChip extends StatelessWidget {
@@ -16,8 +17,9 @@ class OrbitStatusChip extends StatelessWidget {
     return Chip(
       label: Text(label),
       side: BorderSide.none,
-      backgroundColor:
-          positive ? OrbitColors.successSoft : OrbitColors.warningSoft,
+      backgroundColor: positive
+          ? OrbitColors.successSoft
+          : OrbitColors.warningSoft,
       labelStyle: TextStyle(
         color: positive ? OrbitColors.success : OrbitColors.warning,
         fontSize: 12,

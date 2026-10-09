@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+
 import 'core/design/orbit_breakpoints.dart';
 import 'shared/widgets/orbit_status_chip.dart';
+import 'features/patients/patients_screen.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -145,6 +147,7 @@ class _OrbitShellState extends State<OrbitShell> {
   );
 
   Widget _content(bool compact) {
+    if (selectedIndex == 1) return const PatientsScreen();
     if (selectedIndex != 0) {
       return Center(
         child: Text(
