@@ -8,6 +8,7 @@ import 'shared/widgets/orbit_status_chip.dart';
 import 'features/patients/patients_screen.dart';
 import 'features/scheduling/agenda_screen.dart';
 import 'features/encounters/encounters_screen.dart';
+import 'features/modules/modules_screen.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -64,6 +65,7 @@ class _OrbitShellState extends State<OrbitShell> {
     ('Pacientes', Icons.people_outline),
     ('Agenda', Icons.calendar_month_outlined),
     ('Atenciones', Icons.medical_services_outlined),
+    ('Más módulos', Icons.widgets_outlined),
   ];
 
   @override
@@ -152,6 +154,7 @@ class _OrbitShellState extends State<OrbitShell> {
     if (selectedIndex == 1) return const PatientsScreen();
     if (selectedIndex == 2) return const AgendaScreen();
     if (selectedIndex == 3) return const EncountersScreen();
+    if (selectedIndex == 4) return const ModulesScreen();
     if (selectedIndex != 0) {
       return Center(
         child: Text(
