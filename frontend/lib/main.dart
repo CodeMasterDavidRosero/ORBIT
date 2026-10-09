@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'core/design/orbit_breakpoints.dart';
+import 'shared/widgets/orbit_status_chip.dart';
 
 void main() => runApp(const ProviderScope(child: OrbitApp()));
 
@@ -62,7 +64,7 @@ class _OrbitShellState extends State<OrbitShell> {
 
   @override
   Widget build(BuildContext context) {
-    final compact = MediaQuery.sizeOf(context).width < 800;
+    final compact = context.isOrbitCompact;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -352,17 +354,7 @@ class _AppointmentRow extends StatelessWidget {
       ),
       title: Text(patient, style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(type),
-      trailing: Chip(
-        label: Text(status),
-        side: BorderSide.none,
-        backgroundColor: confirmed
-            ? const Color(0xFFE3F7EC)
-            : const Color(0xFFFFF1DB),
-        labelStyle: TextStyle(
-          color: confirmed ? const Color(0xFF219653) : const Color(0xFFB76E00),
-          fontSize: 12,
-        ),
-      ),
+      trailing: OrbitStatusChip(label: status, positive: confirmed),
     );
   }
 }
