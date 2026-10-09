@@ -12,10 +12,11 @@ class AgendaScreen extends StatefulWidget {
 class _AgendaScreenState extends State<AgendaScreen> {
   String filter = 'Todas';
   final filters = const ['Todas', 'Confirmada', 'Pendiente', 'Cancelada'];
+  late List<Appointment> appointments = [...mockAppointments];
 
   @override
   Widget build(BuildContext context) {
-    final appointments = mockAppointments
+    final visibleAppointments = appointments
         .where((item) => filter == 'Todas' || item.status == filter)
         .toList();
     return SingleChildScrollView(
@@ -45,7 +46,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 ],
               ),
               FilledButton.icon(
-                onPressed: () {},
+                onPressed: _scheduleAppointment,
                 icon: const Icon(Icons.add),
                 label: const Text('Agendar cita'),
               ),
@@ -102,20 +103,20 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       ),
                       const Spacer(),
                       Text(
-                        '${appointments.length} citas',
+                        '${visibleAppointments.length} citas',
                         style: const TextStyle(color: OrbitColors.muted),
                       ),
                     ],
                   ),
                 ),
                 const Divider(height: 1),
-                if (appointments.isEmpty)
+                if (visibleAppointments.isEmpty)
                   const Padding(
                     padding: EdgeInsets.all(48),
                     child: Text('No hay citas con este filtro.'),
                   )
                 else
-                  ...appointments.map(_appointmentTile),
+                  ...visibleAppointments.map(_appointmentTile),
               ],
             ),
           ),
@@ -152,6 +153,45 @@ class _AgendaScreenState extends State<AgendaScreen> {
         side: BorderSide.none,
         backgroundColor: color.withValues(alpha: 0.12),
         labelStyle: TextStyle(color: color, fontSize: 12),
+      ),
+    );
+  }
+
+  void _scheduleAppointment() {
+    final patient = TextEditingController();
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Agendar cita'),
+        content: TextField(
+          controller: patient,
+          autofocus: true,
+          decoration: const InputDecoration(labelText: 'Paciente'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            onPressed: () {
+              if (patient.text.trim().isEmpty) return;
+              setState(
+                () => appointments = [
+                  ...appointments,
+                  Appointment(
+                    '16:00',
+                    patient.text.trim(),
+                    'Consulta general',
+                    'Pendiente',
+                  ),
+                ],
+              );
+              Navigator.pop(context);
+            },
+            child: const Text('Agendar'),
+          ),
+        ],
       ),
     );
   }
