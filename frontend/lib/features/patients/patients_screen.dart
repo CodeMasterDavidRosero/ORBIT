@@ -88,7 +88,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            visible.length.toString() + ' registros',
+                            '${visible.length} registros',
                             style: const TextStyle(color: OrbitColors.muted),
                           ),
                         ),
@@ -112,7 +112,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
                             style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                           subtitle: Text(
-                            patient.document + '  •  ' + patient.phone,
+                            '${patient.document}  •  ${patient.phone}',
                           ),
                           trailing: const Icon(Icons.chevron_right),
                           onTap: () => _details(patient),
@@ -132,12 +132,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
       builder: (_) => AlertDialog(
         title: Text(patient.name),
         content: Text(
-          'Documento: ' +
-              patient.document +
-              '\nFecha de nacimiento: ' +
-              patient.birthDate +
-              '\nTeléfono: ' +
-              patient.phone,
+          'Documento: ${patient.document}\nFecha de nacimiento: ${patient.birthDate}\nTeléfono: ${patient.phone}',
         ),
         actions: [
           TextButton(

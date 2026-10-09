@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     subtitle: Text('Profesional · Sesión activa'),
                   ),
                   DropdownButtonFormField<String>(
-                    value: organization,
+                    initialValue: organization,
                     decoration: const InputDecoration(
                       labelText: 'Organización activa',
                     ),

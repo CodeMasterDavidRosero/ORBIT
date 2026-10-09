@@ -102,7 +102,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       ),
                       const Spacer(),
                       Text(
-                        appointments.length.toString() + ' citas',
+                        '${appointments.length} citas',
                         style: const TextStyle(color: OrbitColors.muted),
                       ),
                     ],
